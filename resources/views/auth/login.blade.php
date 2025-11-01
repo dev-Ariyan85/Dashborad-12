@@ -168,7 +168,7 @@
                         <div class="text-center">
                             <p class="text-sm text-gray-600">
                                 Don't have an account? 
-                                <a href="#" class="font-semibold text-blue-600 hover:text-blue-800">Create account</a>
+                                <a href="{{route('register')}}" class="font-semibold text-blue-600 hover:text-blue-800">Create account</a>
                             </p>
                         </div>
                     </form>

@@ -90,9 +90,9 @@
                         <h2 class="text-3xl font-bold text-gray-800 mb-2">Create Account</h2>
                         <p class="text-gray-600">Fill in your details to get started</p>
                     </div>
-                    
-                    <form id="registerForm" class="space-y-6">
-                        
+
+                    <form id="registerForm" action="{{ route('register.store') }}" method="POST" class="space-y-6">
+                        @csrf
                         <!-- Full Name -->
                         <div>
                             <label for="fullname" class="block text-sm font-semibold text-gray-700 mb-2">
@@ -103,6 +103,7 @@
                                 <input 
                                     type="text" 
                                     id="fullname"
+                                    name="name"
                                     class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     placeholder="John Doe"
                                     required
@@ -120,6 +121,7 @@
                                 <input 
                                     type="email" 
                                     id="email"
+                                    name="email"
                                     class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     placeholder="john@example.com"
                                     required
@@ -137,6 +139,7 @@
                                 <input 
                                     type="text" 
                                     id="username"
+                                    name="username"
                                     class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     placeholder="johndoe"
                                     required
@@ -154,6 +157,7 @@
                                 <input 
                                     type="password" 
                                     id="password"
+                                    name="password"
                                     class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     placeholder="••••••••"
                                     required
@@ -178,6 +182,7 @@
                                 <input 
                                     type="password" 
                                     id="password_confirmation"
+                                    name="password_confirmation"
                                     class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     placeholder="••••••••"
                                     required
@@ -194,7 +199,7 @@
                         
                         <!-- Terms & Conditions -->
                         <div class="flex items-start">
-                            <input type="checkbox" id="terms" class="w-4 h-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-blue-500" required>
+                            <input type="checkbox" id="terms" name="agree" class="w-4 h-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-blue-500" required>
                             <label for="terms" class="ml-2 text-sm text-gray-700">
                                 I agree to the <a href="#" class="font-semibold text-blue-600 hover:text-blue-800">Terms and Conditions</a> and <a href="#" class="font-semibold text-blue-600 hover:text-blue-800">Privacy Policy</a>
                             </label>
@@ -256,27 +261,7 @@
             }
         }
 
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('password_confirmation').value;
-            const fullname = document.getElementById('fullname').value;
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Creating account...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                alert('Welcome, ' + fullname + '! Your account has been created.');
-                // window.location.href = 'dashboard.html';
-            }, 1500);
-        });
+        
     </script>
 </body>
 </html>
